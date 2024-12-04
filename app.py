@@ -3,7 +3,8 @@ from flask_cors import CORS
 import sqlite3
 
 app = Flask(__name__)
-CORS(app)  # Allow cross-origin requests for local development
+# Updated CORS configuration to allow requests from your frontend domain (empoliv.com)
+CORS(app, resources={r"/*": {"origins": "https://empoliv.com"}})
 
 # Initialize SQLite Database (for storing donor details)
 def init_donations_db():
@@ -95,3 +96,4 @@ if __name__ == '__main__':
     init_donations_db()  # Initialize donations database
     init_partnerships_db()  # Initialize partnerships database
     app.run(debug=True)
+
